@@ -1,0 +1,68 @@
+package component
+
+import (
+	"github.com/martinmunillas/otter/i18n"
+	"github.com/martinmunillas/otter/server"
+)
+
+css otterStyles() {
+	width: min(320px, 80vmin);
+	height: min(320px, 80vmin);
+	border-radius: 100%;
+}
+
+css containerStyles() {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--spacing-md);
+	width: 100vw;
+	height: 100vh;
+}
+
+css headerStyles() {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+
+css mainStyles() {
+	display: flex;
+	align-items: center;
+	gap: var(--spacing-lg);
+	gap: 2rem;
+}
+
+css mainTextStyles() {
+	display: flex;
+	flex-direction: column;
+	align-items: end;
+}
+
+templ IndexPage(t server.Tools) {
+	@HtmlLayout() {
+		<div class={ containerStyles() }>
+			<div class={ headerStyles() }>
+				@i18n.LanguageSelector()
+			</div>
+			<div class={ mainStyles() }>
+				<div class={ mainTextStyles() }>
+					<h1>
+						Otter
+					</h1>
+					<p>
+						@t.RawT("otter.description")
+					</p>
+				</div>
+				<img class={ otterStyles() } src="/static/otter.webp" alt="Otter's logo"/>
+			</div>
+			<div>
+				<a href="https://github.com/martinmunillas/otter" target="_blank">
+					<i class="fa-brands fa-github"></i>
+				</a>
+			</div>
+		</div>
+	}
+}

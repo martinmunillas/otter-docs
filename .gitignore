@@ -1,0 +1,5 @@
+.env
+*_templ.go
+*_templ.txt
+sherlock.inlang/project_id
+*.etag

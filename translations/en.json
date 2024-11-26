@@ -1,0 +1,17 @@
+{
+  "helloWorld": "Hello World",
+  "locale": {
+    "en": "English 🇺🇸",
+    "es": "Spanish 🇪🇸"
+  },
+  "otter": {
+    "description": "Build complex applications simply with <b>Go, templ and HTMX</b>"
+  },
+  "home": {
+    "getStartedByEditing": "Get started by editing {file}",
+    "docs": {
+      "title": "Docs",
+      "description": "See in depth informations of Otter's features and APIs"
+    }
+  }
+}

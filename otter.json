@@ -1,0 +1,4 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinmunillas/otter/main/otterconfig.schema.json",
+  "dbDriver": "postgres"
+}
