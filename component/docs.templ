@@ -6,24 +6,6 @@ import (
 	"github.com/martinmunillas/otter/i18n"
 )
 
-css headerDocsStyles() {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	grid-area: header;
-	background-color: #e4d2a8; 
-    color: #333; 
-    padding: 0rem 1rem;
-	font-size: 1.5em;
-	font-weight: bold;
-	text-align: center;
-	border-bottom: 4px solid #b66543; 
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-	position: sticky;
-	top: 0;
-	z-index: 1000;
-}
-
 css logoStyles() {
 	display: flex;
 	align-items: center;
@@ -32,7 +14,7 @@ css logoStyles() {
 
 templ Logo() {
 	<div class={ logoStyles() }>
-		<img src="https://raw.githubusercontent.com/martinmunillas/otter/main/assets/otter.webp" alt="Otter Logo" height="80px" width="80px"/>
+		<img src="/static/otter.png" alt="Otter Logo" height="80px" width="80px"/>
 		<h1>Otter</h1>
 	</div>
 }
@@ -51,54 +33,106 @@ css rightLinkStyles(level uint8) {
 	font-weight: { fontWeight[level] };
 }
 
+css headerDocsStyles() {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	grid-area: header;
+	background-color: #fff; 
+    color: #333; 
+    padding: 0rem 1rem;
+	font-size: 1.5em;
+	font-weight: bold;
+	text-align: center;
+	border-bottom: 4px solid #b66543; 
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+}
+
+css rightSideStyles() {
+	grid-area: right-sidebar;
+	background-color: #fff; 
+  	border-left: 1px solid #e4d2a8;
+	padding: 1.5em 1em;
+	overflow-y: auto;
+}
+
+css leftSideStyles() {
+	grid-area: left-sidebar;
+	background-color: #fff; 
+  	border-right: 1px solid #e4d2a8;
+	padding: 1.5em 1em;
+	overflow-y: auto;
+}
+
+css docsLayoutStyles() {
+	display: grid;
+	grid-template-areas: "header header header"
+    "left-sidebar content right-sidebar";
+	grid-template-columns: 250px 1fr 250px;
+	grid-template-rows: auto 1fr;
+}
+
+css contentStyles() {
+	grid-area: content;
+	background-color: #fff;
+	padding: 2em;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+	overflow-y: auto;
+}
+
 templ DocsPage(content string, headings []markdown.Heading) {
 	@HtmlLayout() {
-		<header class={ headerDocsStyles() }>
-			<a href="/">
-				@Logo()
-			</a>
-			<div>
-				@i18n.LanguageSelector()
-				<a target="_blank" href="https://github.com/martinmunillas/otter/tree/main">
-					<i class="fa-brands fa-github"></i>
+		<div class={ docsLayoutStyles() }>
+			<header class={ headerDocsStyles() }>
+				<a href="/">
+					@Logo()
 				</a>
-			</div>
-		</header>
-		<nav id="left-sidebar">
-			<h2>Otter</h2>
-			<ul>
-				<li><a href="/docs">Summary</a></li>
-				<li><a href="/docs/installation">Installation</a></li>
-				<li><a href="/docs/quick-start">Quick start</a></li>
-			</ul>
-			<h2>CLI</h2>
-			<ul>
-				<li><a href="/docs/cli/init">otter init</a></li>
-				<li><a href="/docs/cli/dev">otter dev</a></li>
-				<li><a href="/docs/cli/migrate">otter migrate</a></li>
-			</ul>
-			<h2>Modules</h2>
-			<ul>
-				<li><a href="/docs/module/otter">otter</a></li>
-				<li><a href="/docs/module/otter-i18n">otter/i18n</a></li>
-				<li><a href="/docs/module/otter-env">otter/env</a></li>
-				<li><a href="/docs/module/otter-response-send">otter/response/send</a></li>
-				<li><a href="/docs/module/otter-server">otter/server</a></li>
-				<li><a href="/docs/module/otter-migrate">otter/migrate</a></li>
-			</ul>
-			<h2>Troubleshooting</h2>
-		</nav>
-		<main id="content">
-			@templ.Raw(content, nil)
-		</main>
-		<aside id="right-sidebar">
-			<ul>
-				for _, heading:= range headings {
-					if heading.Level >= 2 {
-						<li><a href={ templ.URL(fmt.Sprintf("#%s", heading.ID())) } class={ rightLinkStyles(heading.Level) }>{ heading.Content }</a></li>
+				<div>
+					@i18n.LanguageSelector()
+					<a target="_blank" href="https://github.com/martinmunillas/otter/tree/main">
+						<i class="fa-brands fa-github"></i>
+					</a>
+				</div>
+			</header>
+			<nav class={ leftSideStyles() }>
+				<h2>Otter</h2>
+				<ul>
+					<li><a href="/docs">Summary</a></li>
+					<li><a href="/docs/installation">Installation</a></li>
+					<li><a href="/docs/quick-start">Quick start</a></li>
+				</ul>
+				<h2>CLI</h2>
+				<ul>
+					<li><a href="/docs/cli/init">otter init</a></li>
+					<li><a href="/docs/cli/dev">otter dev</a></li>
+					<li><a href="/docs/cli/migrate">otter migrate</a></li>
+				</ul>
+				<h2>Modules</h2>
+				<ul>
+					<li><a href="/docs/module/otter">otter</a></li>
+					<li><a href="/docs/module/otter-i18n">otter/i18n</a></li>
+					<li><a href="/docs/module/otter-env">otter/env</a></li>
+					<li><a href="/docs/module/otter-response-send">otter/response/send</a></li>
+					<li><a href="/docs/module/otter-server">otter/server</a></li>
+					<li><a href="/docs/module/otter-migrate">otter/migrate</a></li>
+				</ul>
+				<h2>Troubleshooting</h2>
+			</nav>
+			<main class={ contentStyles() }>
+				@templ.Raw(content, nil)
+			</main>
+			<aside class={ rightSideStyles() }>
+				<ul>
+					for _, heading:= range headings {
+						if heading.Level >= 2 {
+							<li><a href={ templ.URL(fmt.Sprintf("#%s", heading.ID())) } class={ rightLinkStyles(heading.Level) }>{ heading.Content }</a></li>
+						}
 					}
-				}
-			</ul>
-		</aside>
+				</ul>
+			</aside>
+		</div>
 	}
 }

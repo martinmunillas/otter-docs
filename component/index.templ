@@ -41,6 +41,17 @@ css mainTextStyles() {
 	align-items: end;
 }
 
+css quickLinksStyles() {
+	display: flex;
+	gap: 2rem;
+}
+
+css quickLinkStyles() {
+	border: 1px solid #b66543;
+	padding: 0.5rem 1rem;
+	border-radius: 0.25rem;
+}
+
 templ IndexPage(t server.Tools) {
 	@HtmlLayout() {
 		<div class={ containerStyles() }>
@@ -55,8 +66,16 @@ templ IndexPage(t server.Tools) {
 					<p>
 						@t.RawT("otter.description")
 					</p>
+					<div class={ quickLinksStyles() }>
+						<a class={ quickLinkStyles() } href="/docs">
+							Get started <i class="fas fa-arrow-right"></i>
+						</a>
+						<a class={ quickLinkStyles() } href="/docs/quick-start">
+							Quick start <i class="fas fa-arrow-right"></i>
+						</a>
+					</div>
 				</div>
-				<img class={ otterStyles() } src="/static/otter.webp" alt="Otter's logo"/>
+				<img class={ otterStyles() } src="/static/otter.png" alt="Otter's logo"/>
 			</div>
 			<div>
 				<a href="https://github.com/martinmunillas/otter" target="_blank">
