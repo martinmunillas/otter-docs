@@ -15,17 +15,10 @@ css containerStyles() {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: center;
 	gap: var(--spacing-md);
 	width: 100vw;
 	height: 100vh;
-}
-
-css headerStyles() {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	width: 100%;
 }
 
 css mainStyles() {
@@ -37,6 +30,7 @@ css mainStyles() {
 
 css mainTextStyles() {
 	display: flex;
+	gap: 1rem;
 	flex-direction: column;
 	align-items: end;
 }
@@ -47,7 +41,7 @@ css quickLinksStyles() {
 }
 
 css quickLinkStyles() {
-	border: 1px solid #b66543;
+	border: 1px solid var(--brown);
 	padding: 0.5rem 1rem;
 	border-radius: 0.25rem;
 }
@@ -55,9 +49,7 @@ css quickLinkStyles() {
 templ IndexPage(t server.Tools) {
 	@HtmlLayout() {
 		<div class={ containerStyles() }>
-			<div class={ headerStyles() }>
-				@i18n.LanguageSelector()
-			</div>
+			@i18n.LanguageSelector()
 			<div class={ mainStyles() }>
 				<div class={ mainTextStyles() }>
 					<h1>
@@ -66,21 +58,25 @@ templ IndexPage(t server.Tools) {
 					<p>
 						@t.RawT("otter.description")
 					</p>
-					<div class={ quickLinksStyles() }>
-						<a class={ quickLinkStyles() } href="/docs">
-							Get started <i class="fas fa-arrow-right"></i>
-						</a>
-						<a class={ quickLinkStyles() } href="/docs/quick-start">
-							Quick start <i class="fas fa-arrow-right"></i>
+					<div>
+						<div class={ quickLinksStyles() }>
+							<a class={ quickLinkStyles() } href="/docs">
+								@i18n.T(ctx, "home.getStarted")
+								<i class="fas fa-arrow-right"></i>
+							</a>
+							<a class={ quickLinkStyles() } href="/docs/quick-start">
+								@i18n.T(ctx, "home.quickStart")
+								<i class="fas fa-arrow-right"></i>
+							</a>
+						</div>
+					</div>
+					<div>
+						<a href="https://github.com/martinmunillas/otter" target="_blank">
+							<i class="big fa-brands fa-github"></i>
 						</a>
 					</div>
 				</div>
 				<img class={ otterStyles() } src="/static/otter.png" alt="Otter's logo"/>
-			</div>
-			<div>
-				<a href="https://github.com/martinmunillas/otter" target="_blank">
-					<i class="fa-brands fa-github"></i>
-				</a>
 			</div>
 		</div>
 	}

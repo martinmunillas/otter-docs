@@ -12,6 +12,8 @@
     "docs": {
       "title": "Docs",
       "description": "See in depth informations of Otter's features and APIs"
-    }
+    },
+    "getStarted": "Get started",
+    "quickStart": "Quick start"
   }
 }

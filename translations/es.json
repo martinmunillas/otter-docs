@@ -12,6 +12,8 @@
     "docs": {
       "title": "Documentacion",
       "description": "Vea información detallada sobre las características y APIs de Otter"
-    }
+    },
+    "getStarted": "Primeros pasos",
+    "quickStart": "Inicio rápido"
   }
 }

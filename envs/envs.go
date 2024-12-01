@@ -10,6 +10,6 @@ var Etag string
 func init() {
 	if os.Getenv("IGNORE_CACHE") != "true" {
 		hash, _ := exec.Command("git", "rev-parse", "HEAD").Output()
-		Etag = string(hash)
+		Etag = string(hash)[:len(hash)-1]
 	}
 }

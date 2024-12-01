@@ -1,10 +1,17 @@
+:root {
+  --beige: #f9f7f3;
+  --black: #333;
+  --brown: #b66543;
+  --turquoise: #6abdaa;
+}
+
 body {
   margin: 0;
   font-family: "Roboto", Arial, sans-serif;
   line-height: 1.6;
   height: 100vh;
-  background-color: #f9f7f3; /* Light beige-white */
-  color: #333;
+  background-color: var(--beige); /* Light beige-white */
+  color: var(--black);
 }
 
 * {
@@ -24,7 +31,7 @@ h1 {
 
 h2 {
   font-size: 1.25rem;
-  border-bottom: 2px solid #6abdaa; /* Turquoise underline */
+  border-bottom: 2px solid var(--turquoise);
   padding-bottom: 0.3em;
   margin-bottom: 1em;
 }
@@ -44,7 +51,7 @@ pre {
   background: #f4f1eb;
   padding: 1em;
   border-radius: 6px;
-  border-left: 4px solid #6abdaa;
+  border-left: 4px solid var(--turquoise);
   overflow-x: auto;
   font-size: 0.95em;
   margin: 1em 0;
@@ -61,13 +68,13 @@ ul li {
 }
 
 ul li a {
-  color: #b66543; /* Brown for links */
+  color: var(--brown);
   text-decoration: none;
   font-weight: bold;
 }
 
 ul li a:hover {
-  color: #6abdaa; /* Turquoise hover */
+  color: var(--turquoise);
   text-decoration: underline;
 }
 
@@ -80,31 +87,20 @@ img {
 
 a {
   text-decoration: none;
-  color: #b66543;
+  color: var(--brown);
 }
 
 a:has(h1) {
-  color: #333333;
+  color: var(--black) 333;
 }
 
 a:hover:not(:has(h1)) {
-  color: #6abdaa;
+  color: var(--turquoise);
   text-decoration: underline;
 }
 
-main {
-  background: #fff;
-  border-radius: 8px;
-  overflow-y: auto;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-aside {
-  overflow-y: auto;
-}
-
 button {
-  background-color: #6abdaa; /* Turquoise accent */
+  background-color: var(--turquoise); /* Turquoise accent */
   color: #fff;
   border: none;
   padding: 0.7em 1.2em;
@@ -116,7 +112,7 @@ button {
 }
 
 button:hover {
-  background-color: #b66543; /* Brown hover */
+  background-color: var(--brown); /* Brown hover */
 }
 
 .language-selector {
@@ -126,4 +122,8 @@ button:hover {
   color: var(--white);
   background-color: transparent;
   border-color: transparent;
+}
+
+i.big {
+  font-size: 2rem;
 }
